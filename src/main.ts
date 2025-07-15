@@ -8,20 +8,20 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
   const port = configService.get<number>('APP_PORT') || 3000;
 
-  // Enable global DTO validation
+  // 全局启用 DTO 验证管道
   app.useGlobalPipes(new ValidationPipe({
-    whitelist: true, // Strips away any properties that don't have any decorators
-    forbidNonWhitelisted: true, // Throws an error if non-whitelisted values are provided
-    transform: true, // Automatically transform payloads to DTO instances
+    whitelist: true, // 自动剥离请求体中未在 DTO 中定义的属性
+    forbidNonWhitelisted: true, // 如果请求体包含未在 DTO 中定义的属性，则抛出错误
+    transform: true, // 自动将传入的负载转换为 DTO 类的实例
     transformOptions: {
-      enableImplicitConversion: true, // Convert query/path params to their DTO types
+      enableImplicitConversion: true, // 允许将查询参数和路径参数隐式转换为其 DTO 类型
     },
   }));
 
-  // Enable CORS (optional, configure as needed)
+  // 启用 CORS (跨源资源共享)，可根据需要进行详细配置
   app.enableCors();
 
   await app.listen(port);
-  console.log(`Application is running on: ${await app.getUrl()}`);
+  console.log(`应用程序正在运行: ${await app.getUrl()}`);
 }
 bootstrap();
