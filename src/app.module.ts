@@ -6,7 +6,7 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module'; // 认证模块
 import { UsersModule } from './users/users.module'; // 用户模块
 import { WechatModule } from './wechat/wechat.module'; // 微信模块
-// import { HousesModule } from './houses/houses.module'; // 房源模块 (占位)
+import { HousesModule } from './houses/houses.module'; // 房源模块
 
 @Module({
   imports: [
@@ -24,7 +24,7 @@ import { WechatModule } from './wechat/wechat.module'; // 微信模块
     AuthModule, // 导入认证模块
     UsersModule, // 导入用户模块
     WechatModule, // 导入微信模块
-    // HousesModule, // 当房源模块创建后取消注释
+    HousesModule, // 导入房源模块
   ],
   controllers: [AppController], // 根模块的控制器
   providers: [AppService], // 根模块的服务
