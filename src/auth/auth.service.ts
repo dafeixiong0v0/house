@@ -76,3 +76,11 @@ export class AuthService {
     return this.jwtService.sign(payload);
   }
 }
+// Make _createToken public to be accessible from WechatService
+// A better approach might be to have a shared TokenService, but for now this is simpler.
+Object.defineProperty(AuthService.prototype, '_createToken', {
+  value: AuthService.prototype._createToken,
+  writable: true,
+  configurable: true,
+  enumerable: true, // Make it enumerable to avoid issues with `...` spread
+});

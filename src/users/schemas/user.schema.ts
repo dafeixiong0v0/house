@@ -25,6 +25,9 @@ export class User extends Document {
   @Prop({ type: String, required: false }) // 如果主要使用验证码登录，密码可以非必需
   password?: string; // 密码
 
+  @Prop({ type: String, unique: true, sparse: true, default: null }) // 微信 openid，唯一且稀疏索引
+  wechatOpenid?: string;
+
   @Prop({ type: String, default: '新用户' })
   nickname: string; // 昵称
 
